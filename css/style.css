@@ -1,0 +1,523 @@
+/* Toujours importer les fonts au début, 
+ne pas oublier d'importer toutes les variantes de la police */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+
+/*
+**
+***
+****
+    STYLE PAR DÉFAUT : MOBILE FIRST
+****
+***
+**
+*/
+
+
+/* BASE RÉUTILISABLE */
+*{
+    box-sizing: border-box;
+}
+.nobullets{
+    list-style-type:none !important;
+}
+.nomargin{
+    margin:0 !important;
+}
+.nopadding
+{
+    padding:0 !important;
+}
+.center{
+    text-align:center;
+}
+.boxshadow{
+    box-shadow:2px 2px 5px #333;
+}
+
+/* Ca evite que les images débordent de leur parent */
+img{
+    max-width: 100%;
+    height:auto;
+}
+/* On annule la marge blanche sous l'iframe */
+iframe{
+    margin:0;
+    display:block;
+    border:0;
+}
+/* On l'utilise pas ici, mais en vrai vous en aurez besoin quasiment sur tous vos projets */
+.clear{
+    clear:both;
+}
+
+/* FONTS AND COLORS */
+body{
+    font-family: 'Montserrat', sans-serif;
+    line-height:1.5em;
+
+}
+.purple{
+    color:rgb(124, 40, 99);
+}
+
+/* Classes des "boutons" (Qui peuvent aussi être des liens !) : 
+- 1 classe générique applicable à tous les boutons
+- 1 classe par type de bouton pour la gestion des couleurs 
+*/
+.btn{
+    text-decoration:none;
+    border:0;
+    display:inline-block; 
+    padding:1em !important;
+}
+.btn-purple{
+    background-color:rgb(124, 40, 99);
+    color:#fff;
+}
+
+/* LAYOUT */
+.container{
+    max-width:1080px;
+    margin:0 auto;
+}
+.flexbox{
+    display:flex;
+    flex-direction:column;
+}
+/* Flex wrap va permettre de dimensionner les enfants via width ou flex-basis */
+.flexwrap{
+    flex-wrap:wrap;
+}
+
+/* Mosaique des objectifs */
+.mosaic-alt{
+    flex-direction:row;
+}
+/* 
+    On cible les enfants directs via > * (* pour cibler n'importe quel type d'élément) 
+    pour les dimensionner à 50% afin d'en avoir deux par ligne
+*/
+.mosaic-alt > *{
+    flex-basis:50%;
+    padding:1em;
+    border:1px solid #f5f5f5;
+    border-collapse:collapse;
+}
+/* Mosaique des fonctionnalités */
+.mosaic-alt:nth-child(odd){
+    border-right:0;
+    border-bottom:0;
+}
+.mosaic > *:nth-child(odd){
+    background-color:#f5f5f5;
+}
+
+
+/* COMPOSANTS */
+.hero{
+    /* Image de fond et dégradé en transparence 
+    (on n'oublie pas les virgules sinon ça marche pas) */
+    background-image:linear-gradient(to top,
+     rgba(124, 40, 99, 1),
+      rgba(124, 40, 99, 0)), 
+      url(../img/fitness.jpg);
+
+    background-size:cover;  /* Background responsive */
+    background-position:center center;
+
+}
+.hero-content{
+    text-align:center;
+    padding:150px 0; /* Le padding permet de créer l'espace et faire grandir le hero */
+    color:#fff;
+    font-weight:900;
+}
+.hero-title{
+    font-style:italic;
+    font-size:4em;
+    font-weight:900;
+    text-transform:uppercase;
+}
+.hero-subtitle
+{
+    font-size:1.2em;
+}
+.hero-subtitle::before, .hero-subtitle::after{
+    content:" - ";
+}
+.site-header .main-navigation
+{
+    background-color:rgb(124, 40, 99);
+    display:flex;
+    justify-content:space-between;
+    padding:1em;
+}
+.site-header .main-navigation-menu{
+    display:none; /* Masquer le menu par défaut sur mobile */
+    position:absolute; /* position absolute pour sortir le menu du flux afin qu'il ne soit pas pris en compte dans le parent comme élément flex */
+    flex-direction:column; /* Affichage des liens du menu sous forme de colonne */
+    left:0;
+    top:55px; /* Décalage du menu en Y pour qu'il se positionne sous la barre logo + hamburger (on peut utiliser top en position absolute) */
+    text-align:center;
+    width:100%;
+    background-color:rgb(124, 40, 99);
+    padding:1em;
+}
+.site-header .main-navigation-menu .btn-purple{
+    color:rgb(124, 40, 99);
+    background-color:#fff;
+}
+.site-header .main-navigation-menu a{
+    color:#fff;
+    padding:1em 0;
+    text-decoration:none;
+    font-size:1em;
+}
+.site-header .main-navigation .logo{
+    max-width:40px;
+    height:auto;
+}
+/* Hamburger */
+.hamburger-link{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    outline:none;
+    -webkit-appearance: none;
+}
+/* quand on a pas cliqué sur le menu, on affiche le burger */
+.site-header .main-navigation .burger::before {
+    content: '\f0c9';
+    color:#fff;
+    font-size:2em;
+}
+/* quand on a cliqué sur le burger, 
+c'est qu'on clique sur l'input:checkbox et donc celle-ci 
+passe en mode "checked", ce qui nous permet de lui affecter 
+un style différent sur cette pseudo classe */
+.site-header .main-navigation .burger:checked::before {
+    content: '\f00d';
+}
+.site-header .main-navigation .burger:checked + div.main-navigation-menu{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+/* BLOCK OVERLAY */
+
+/* Gestion du parent */
+.block-overlay-wrapper{
+    width:90%;
+    /* La position relative et z-index permet 
+    de faire déborder l'élément sur le hero via des marges négatives */
+    position:relative;
+    z-index:9999;
+    margin:0 auto;
+    margin-top:-100px;
+}
+/* Style générique au bloc overlay */
+.block-overlay 
+{
+    text-align:center;
+    padding:3em;
+    color:#fff;
+}
+.block-overlay .item-title{
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:2em;
+    line-height:1.5em;
+}
+/* Styles spécifiques aux blocs overlay */
+.block-overlay:first-child{
+    background-image: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.5), 
+    rgba(0, 0, 0, 0.5)),
+    url(../img/fitnessman.jpg);
+    background-size:cover;
+}
+.block-overlay:last-child{
+    background-size:cover;
+    background-image:linear-gradient(to top, 
+    rgba(124, 40, 99, 0.5), 
+    rgba(124, 40, 99, 0.5)) , 
+    url(../img/fitnesswoman.jpg);
+}
+
+/* SECTION HEADER */
+.section-header{
+    text-align:center;
+    padding:3em;
+    max-width:1200px;
+    margin:0 auto;
+}
+.section-header .section-title{
+    font-size:1.8em;
+    line-height:2em;
+}
+
+/* ICON AND TEXT */
+.icon-text{
+    padding:3em;
+}
+.icon-text .item-icon
+{
+    max-width:50px;
+}
+
+/* CTA BLOCK */
+.cta-text{
+    background-image: linear-gradient(to right, 
+    rgba(124, 40, 99, 1), 
+    rgba(124, 40, 99, 0)),
+    url(../img/crossfit.jpg) ;
+    background-size:cover;
+    background-attachment: fixed;
+}
+.cta-text .content-wrapper{
+    background:#000;
+    padding:4em;
+    color:#fff;
+}
+.cta-text .content-wrapper .item-title{
+    line-height:1.5em;
+}
+.cta-text .content-wrapper .item-text{
+    margin-bottom:3em;
+}
+
+/* PIED DU SITE */
+.site-footer{
+    color:#fff;
+    padding:6em 3em;
+    border-top:15px solid rgb(124, 40, 99);
+    background:#000;
+    font-size:.8em;
+}
+
+/* Bloc formulaire de contact */
+.site-footer .contact-form{
+    color:#000;
+    background:#fff;
+    width:90%;
+    padding:3em 2em;
+    margin:0 auto;
+    margin-top:-140px;
+    position:relative; /* La position relative afin de pouvoir faire déborder le formulaire en dehors de son parent */
+    max-width:500px;
+}
+.site-footer .contact-form .form-title{
+    text-transform:uppercase;
+}
+/* Ciblage des champs input en excluant les button et submit via :not() */
+.site-footer .contact-form input:not([type=submit]):not([type=button]){
+    width:100%;
+    border:0;
+    border-bottom:1px solid #000;
+    padding:1em .3em;
+    margin-bottom:1.5em;
+    outline:none;
+}
+/* Style du placeholder */
+.site-footer .contact-form input:not([type=submit]):not([type=button])::placeholder{
+    color:#000;
+}
+.site-footer .contact-form input[type=submit]
+{
+    margin-top:1em;
+}
+/* Bloc marque */
+.site-footer .branding
+{
+    text-align:center;
+}
+.site-footer .branding 
+{
+    margin:4em 0;
+}
+.site-footer .branding .logo img{
+    max-width:50px;
+    height:auto;
+}
+.site-footer .branding .nav-social a{
+    color:#fff;
+    display:inline-block;
+    margin:.3em;
+    font-size:1.7em;
+}
+/* Bloc adresse */
+.site-footer .contact-info
+{
+    padding-left:1em;
+}
+.site-footer .contact-info .item-title
+{
+    margin-bottom:0;
+}
+.site-footer .contact-info .item-title .fas
+{
+    display:inline-block;
+    position:absolute;
+    margin-left:-1.5em;
+    margin-top:.3em;
+    color:rgb(124, 40, 99);
+}
+
+
+
+/*
+**
+***
+****
+    MEDIA QUERIES 
+****
+***
+**
+*/
+
+
+/* Style tablette */
+@media screen and (min-width:768px){
+    .flexbox{
+        flex-direction:row;
+    }
+    .site-header .main-navigation .logo {
+        max-width: 70px;
+    }
+    .site-header .main-navigation{
+        background:transparent;
+    }
+    /* Affichage du menu principal (qui est masqué sur mobile ) */
+    .site-header .main-navigation-menu{
+        display:block !important;
+        text-align:right;
+        padding:0;
+        position:static !important;
+        background:transparent;
+    }
+    .site-header .main-navigation-menu a{
+        margin:0 .5em;
+    }
+    .site-header .main-navigation-menu .btn-purple{
+        background-color:rgb(124, 40, 99);
+        color:#fff;        
+    }
+    /* On masque le hamburger à partir de tablette */
+    .site-header .hamburger-link{
+        display:none;
+    }
+    .block-overlay-wrapper {
+        width: 100%;
+        margin-top: 0px;
+    }
+    .block-overlay {
+        padding: 5em 0;
+        flex-basis:50%;
+    }
+    /* Mosaique 1 */
+    .mosaic-alt > * {
+        /* 4 items par ligne à partir de tablette */
+        flex-basis: 25%;
+        border:0;
+        border-top:1px solid #ccc;
+        border-right:1px solid #ccc;
+    }
+    /* Annulation du border du dernier élément */
+    .mosaic-alt > *:nth-child(4) {
+        border-right:0;
+    }
+    /* Mosaique 2 */
+    .mosaic > * {
+        flex-basis:50%;
+
+    }
+    /* Alternance des couleurs de fond */
+    .mosaic > *:nth-child(1),
+    .mosaic > *:nth-child(4),
+    .mosaic > *:nth-child(5)
+    {
+        background-color:#fff;
+    }
+    .mosaic > *:nth-child(2),
+    .mosaic > *:nth-child(3),
+    .mosaic > *:nth-child(6)
+    {
+        background-color:#f5f5f5;
+    }
+    .cta-text{
+        justify-content: flex-end;
+    }
+    .cta-text .content-wrapper {
+        width:50%;
+    }
+    .cta-text .content-wrapper .item-title{
+        /* Marge négative sur le titre pour le décaler vers la gauche */
+        margin-left:-150px;
+    }
+    .site-footer 
+    {
+        padding:1em;
+        justify-content: center;
+    }
+    .site-footer .branding{
+        text-align:right;
+        flex:1; /* Fixer une taille relative entre les items flex */
+        padding: 0 2em;
+        max-width:400px;
+    }
+    .site-footer .contact-info{
+        order:2; /* Réordonner les items flex */
+        flex:1; /* Fixer une taille relative entre les items flex */
+        padding:0 2em;
+        max-width:400px;
+    }
+    .site-footer .contact-form{
+        order:1; /* Réordonner les items flex */
+        flex:2; /* Fixer une taille relative entre les items flex, le formulaire fera ici 2x la largeur des autres items */
+        margin:1em; 
+        margin-top:-110px;
+    }
+}
+
+/* Style desktop */
+@media screen and (min-width:990px){
+    .block-overlay-wrapper{
+        max-width:1200px;
+        margin:0 auto;
+        margin-top:-80px;
+        justify-content:center;
+    }
+    .block-overlay-wrapper > .block-overlay {
+        padding:3em 6em;
+    }
+    .block-overlay .item-title {
+        font-size: 1.6em;
+    }
+    .block-overlay {
+        padding: 2em 0;
+    }
+    /* Mosaique 2 */
+    .mosaic > * {
+        /* 3 items par ligne */
+        flex-basis:calc(100%/3);
+    }
+    /* Alternance des couleurs de fond */
+    .mosaic > *:nth-child(even)
+    {
+        background-color:#fff;
+    }
+    .mosaic > *:nth-child(odd)
+    {
+        background-color:#ececec;
+    }
+    .cta-text .content-wrapper{
+        background:#000;
+        padding:70px 4em;
+        color:#fff;
+        width:40%;
+    } 
+}
