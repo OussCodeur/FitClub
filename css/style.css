@@ -1,20 +1,7 @@
-/* Toujours importer les fonts au début, 
-ne pas oublier d'importer toutes les variantes de la police */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 
 
-/*
-**
-***
-****
-    STYLE PAR DÉFAUT : MOBILE FIRST
-****
-***
-**
-*/
-
-
-/* BASE RÉUTILISABLE */
 *{
     box-sizing: border-box;
 }
@@ -35,36 +22,33 @@ ne pas oublier d'importer toutes les variantes de la police */
     box-shadow:2px 2px 5px #333;
 }
 
-/* Ca evite que les images débordent de leur parent */
+
 img{
     max-width: 100%;
     height:auto;
 }
-/* On annule la marge blanche sous l'iframe */
+
 iframe{
     margin:0;
     display:block;
     border:0;
 }
-/* On l'utilise pas ici, mais en vrai vous en aurez besoin quasiment sur tous vos projets */
+
 .clear{
     clear:both;
 }
 
-/* FONTS AND COLORS */
+
 body{
     font-family: 'Montserrat', sans-serif;
     line-height:1.5em;
 
 }
 .purple{
-    color:rgb(124, 40, 99);
+    color: #E37B38;
 }
 
-/* Classes des "boutons" (Qui peuvent aussi être des liens !) : 
-- 1 classe générique applicable à tous les boutons
-- 1 classe par type de bouton pour la gestion des couleurs 
-*/
+
 .btn{
     text-decoration:none;
     border:0;
@@ -72,7 +56,7 @@ body{
     padding:1em !important;
 }
 .btn-purple{
-    background-color:rgb(124, 40, 99);
+    background-color: #E37B38;
     color:#fff;
 }
 
@@ -119,9 +103,9 @@ body{
     /* Image de fond et dégradé en transparence 
     (on n'oublie pas les virgules sinon ça marche pas) */
     background-image:linear-gradient(to top,
-     rgba(124, 40, 99, 1),
+     rgba(227, 123, 56, 1),
       rgba(124, 40, 99, 0)), 
-      url(../img/fitness.jpg);
+      url(../img/fitnessclub.jpg);
 
     background-size:cover;  /* Background responsive */
     background-position:center center;
@@ -148,7 +132,7 @@ body{
 }
 .site-header .main-navigation
 {
-    background-color:rgb(124, 40, 99);
+    background-color:#E37B38;
     display:flex;
     justify-content:space-between;
     padding:1em;
@@ -161,11 +145,11 @@ body{
     top:55px; /* Décalage du menu en Y pour qu'il se positionne sous la barre logo + hamburger (on peut utiliser top en position absolute) */
     text-align:center;
     width:100%;
-    background-color:rgb(124, 40, 99);
+    background-color:#E37B38;
     padding:1em;
 }
 .site-header .main-navigation-menu .btn-purple{
-    color:rgb(124, 40, 99);
+    color:#E37B38;
     background-color:#fff;
 }
 .site-header .main-navigation-menu a{
@@ -237,15 +221,15 @@ un style différent sur cette pseudo classe */
     background-image: linear-gradient(to top, 
     rgba(0, 0, 0, 0.5), 
     rgba(0, 0, 0, 0.5)),
-    url(../img/fitnessman.jpg);
+    url(../img/header.jpg);
     background-size:cover;
 }
 .block-overlay:last-child{
     background-size:cover;
     background-image:linear-gradient(to top, 
-    rgba(124, 40, 99, 0.5), 
-    rgba(124, 40, 99, 0.5)) , 
-    url(../img/fitnesswoman.jpg);
+    rgba(0, 0, 0, 0.5), 
+    rgba(0, 0, 0, 0.5)),
+    url(../img/woman.jpg);
 }
 
 /* SECTION HEADER */
@@ -272,9 +256,9 @@ un style différent sur cette pseudo classe */
 /* CTA BLOCK */
 .cta-text{
     background-image: linear-gradient(to right, 
-    rgba(124, 40, 99, 1), 
+    rgba(227, 123, 56, 1), 
     rgba(124, 40, 99, 0)),
-    url(../img/crossfit.jpg) ;
+    url(../img/cours.jpg) ;
     background-size:cover;
     background-attachment: fixed;
 }
@@ -294,7 +278,7 @@ un style différent sur cette pseudo classe */
 .site-footer{
     color:#fff;
     padding:6em 3em;
-    border-top:15px solid rgb(124, 40, 99);
+    border-top:15px solid #E37B38;
     background:#000;
     font-size:.8em;
 }
@@ -364,7 +348,7 @@ un style différent sur cette pseudo classe */
     position:absolute;
     margin-left:-1.5em;
     margin-top:.3em;
-    color:rgb(124, 40, 99);
+    color:#E37B38;
 }
 
 
@@ -403,7 +387,7 @@ un style différent sur cette pseudo classe */
         margin:0 .5em;
     }
     .site-header .main-navigation-menu .btn-purple{
-        background-color:rgb(124, 40, 99);
+        background-color:#E37B38;
         color:#fff;        
     }
     /* On masque le hamburger à partir de tablette */
